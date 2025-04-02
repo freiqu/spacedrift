@@ -110,9 +110,9 @@ class Game {
     this.ctx.fillStyle = "blue";
     this.ctx.save();
     this.player = new Player(
-      this.canvas.width / 2 - 25,
-      this.canvas.height - 75,
-      this,
+        this.canvas.width / 2 - 25,
+        this.canvas.height - 75,
+        this,
     );
     this.scorecounter = this.document.getElementById("score");
     this.highscorecounter = this.document.getElementById("highscore");
@@ -126,14 +126,14 @@ class Game {
     if (this.bossTime === true) {
       if (Math.random() < this.calculateEnemyProb(this.tick) / 3) {
         this.enemies.push(
-          new Enemy(
-            Math.round(Math.random() * this.canvas.width),
-            -50,
-            this.calculateEnemyStep(this.tick),
-            undefined,
-            goldprob,
-            this,
-          ),
+            new Enemy(
+                Math.round(Math.random() * this.canvas.width),
+                -50,
+                this.calculateEnemyStep(this.tick),
+                undefined,
+                goldprob,
+                this,
+            ),
         );
       }
       if (this.bossspawned === false) {
@@ -147,14 +147,14 @@ class Game {
       for (let index = 0; index < this.bossarray.length; index++) {
         const boss = this.bossarray[index];
         this.drawProgressBar(
-          boss.hp * 8.5,
-          boss.position.x,
-          boss.position.y - 8,
-          boss.width,
-          5,
-          "#F5FF00",
-          "#00FF00",
-          40,
+            boss.hp * 8.5,
+            boss.position.x,
+            boss.position.y - 8,
+            boss.width,
+            5,
+            "#F5FF00",
+            "#00FF00",
+            40,
         );
         if (boss.position.y < 150) {
           boss.velocity.y = 2;
@@ -186,18 +186,18 @@ class Game {
         }
         if (this.bossShootDelay <= 0) {
           this.bossprojectiles.push(
-            new Projectile(
-              {
-                x: boss.position.x + boss.width / 2,
-                y: boss.position.y + tickPerShoot,
-              },
-              {
-                x: 0,
-                y: 10,
-              },
-              "#00FF00",
-              this,
-            ),
+              new Projectile(
+                  {
+                    x: boss.position.x + boss.width / 2,
+                    y: boss.position.y + tickPerShoot,
+                  },
+                  {
+                    x: 0,
+                    y: 10,
+                  },
+                  "#00FF00",
+                  this,
+              ),
           );
           this.bossShootDelay = bossShootDelayTicks;
         }
@@ -221,27 +221,27 @@ class Game {
       this.bossspawned = false;
       if (Math.random() < this.calculateEnemyProb(this.tick)) {
         this.enemies.push(
-          new Enemy(
-            Math.round(Math.random() * this.canvas.width),
-            -50,
-            this.calculateEnemyStep(this.tick),
-            undefined,
-            goldprob,
-            this,
-          ),
+            new Enemy(
+                Math.round(Math.random() * this.canvas.width),
+                -50,
+                this.calculateEnemyStep(this.tick),
+                undefined,
+                goldprob,
+                this,
+            ),
         );
       }
       if (Math.random() < this.calculateEnemyProb(this.tick) / 100) {
         this.allies.push(
-          new Ally(Math.round(Math.random() * this.canvas.width), -50, this),
+            new Ally(Math.round(Math.random() * this.canvas.width), -50, this),
         );
       }
     }
     for (let index = 0; index < this.allies.length; index++) {
       let astronaut = this.allies[index];
       if (
-        astronaut.collidesWith(this.player) ||
-        astronaut.collidesWithProjectile()
+          astronaut.collidesWith(this.player) ||
+          astronaut.collidesWithProjectile()
       ) {
         this.allies.splice(index, 1);
         this.endGame();
@@ -292,10 +292,10 @@ class Game {
       this.bossTime = true;
     }
     if (
-      this.keys["w"] &&
-      this.keys["a"] &&
-      this.keys["l"] &&
-      this.walenda === true
+        this.keys["w"] &&
+        this.keys["a"] &&
+        this.keys["l"] &&
+        this.walenda === true
     ) {
       this.walenda = false;
       // updateMode();
@@ -305,49 +305,49 @@ class Game {
       // updateMode();
     }
     this.drawProgressBar(
-      (this.overheat / (tickPerShoot * maxShoot)) * 100,
-      this.player.position.x,
-      this.player.position.y + this.player.height + 8,
-      this.player.width,
-      5,
-      "#fe8206",
-      "#ff0000",
-      90,
+        (this.overheat / (tickPerShoot * maxShoot)) * 100,
+        this.player.position.x,
+        this.player.position.y + this.player.height + 8,
+        this.player.width,
+        5,
+        "#fe8206",
+        "#ff0000",
+        90,
     );
     if (
-      (this.keys["a"] || this.keys["ArrowLeft"]) &&
-      this.player.position.x >= 0
+        (this.keys["a"] || this.keys["ArrowLeft"]) &&
+        this.player.position.x >= 0
     ) {
       this.player.move(-5, 0);
     }
     if (
-      (this.keys["d"] || this.keys["ArrowRight"]) &&
-      this.player.position.x + this.player.width <= innerWidth
+        (this.keys["d"] || this.keys["ArrowRight"]) &&
+        this.player.position.x + this.player.width <= innerWidth
     ) {
       this.player.move(5, 0);
     }
     if (
-      (this.keys[" "] || this.keys["ArrowUp"]) &&
-      this.shootDelay <= 0 &&
-      this.overheat <= maxShoot * tickPerShoot
+        (this.keys[" "] || this.keys["ArrowUp"]) &&
+        this.shootDelay <= 0 &&
+        this.overheat <= maxShoot * tickPerShoot
     ) {
       let shotSound = new Audio(shot_snd);
       shotSound.volume = soundeffectVolume;
       shotSound.play().then();
       this.overheat += tickPerShoot;
       this.projectiles.push(
-        new Projectile(
-          {
-            x: this.player.position.x + this.player.width / 2,
-            y: this.player.position.y,
-          },
-          {
-            x: 0,
-            y: -20,
-          },
-          "#cc0000",
-          this,
-        ),
+          new Projectile(
+              {
+                x: this.player.position.x + this.player.width / 2,
+                y: this.player.position.y,
+              },
+              {
+                x: 0,
+                y: -20,
+              },
+              "#cc0000",
+              this,
+          ),
       );
       this.shootDelay = playerShootDelay;
     }
@@ -357,9 +357,9 @@ class Game {
       this.overheatDetainTimer = overheatDetainTime;
     }
     if (
-      this.overheat > 0 &&
-      !(this.keys[" "] || this.keys["ArrowUp"]) &&
-      this.overheatDetainTimer <= 0
+        this.overheat > 0 &&
+        !(this.keys[" "] || this.keys["ArrowUp"]) &&
+        this.overheatDetainTimer <= 0
     ) {
       this.overheat--;
     }
@@ -379,13 +379,10 @@ class Game {
   }
 
   endGame() {
-    this.postScore();
-    setTimeout(() => {
-      this.reloadGlobalScoreBoard();
-    }, 100);
     this.soundtrack.pause();
     this.game_over.play().then();
     this.run = false;
+    window.localStorage.setItem("highscore", this.highscore);
     this.document.getElementById("game-over-screen").classList.add("show");
     this.document.getElementById("score-board").classList.add("end");
     this.onGameEnded();
@@ -421,9 +418,9 @@ class Game {
 
   calculateEnemyProb(tick) {
     return this.getProgressingValue(
-      tick,
-      this.enemy_prob - this.enemy_prob / 2,
-      this.enemy_prob + this.enemy_prob / 2,
+        tick,
+        this.enemy_prob - this.enemy_prob / 2,
+        this.enemy_prob + this.enemy_prob / 2,
     );
   }
 
