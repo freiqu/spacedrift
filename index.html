@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles/game_style.css" />
+        <link rel="icon" type="image/x-icon" href="img/stefan_pixel.png" />
+        <title>Spacedrift</title>
+    </head>
+
+    <body>
+        <div class="bg_anim"></div>
+        <div class="bg_anim2"></div>
+        <canvas id="game"></canvas>
+        <script src="scripts/game.js" type="module"></script>
+        <div id="score-board" class="hide">
+            <span class="score-tag">Score:</span>
+            <span id="score">0</span>
+            <span class="highscore-tag">Highscore:</span>
+            <span id="highscore">0</span>
+        </div>
+        <div id="bounties"></div>
+        <div id="start-screen" class="darkener">
+            <h1>Spacedrift</h1>
+            <button class="play-button">PLAY</button>
+        </div>
+        <div class="darkener" id="game-over-screen">
+            <div id="game-over">
+                Game <br />
+                Over
+            </div>
+            <div class="global-scoreboard"></div>
+            <button class="play-button" onclick="location.reload()">
+                PLAY<br />AGAIN
+            </button>
+        </div>
+        <div id="alert-screen">
+            <div id="alert">BOSS</div>
+        </div>
+        <canvas id="hidden_canvas"></canvas>
+    </body>
+</html>

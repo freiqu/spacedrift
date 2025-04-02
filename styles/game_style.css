@@ -1,0 +1,585 @@
+#game {
+    width: 100vw;
+    height: 100vh;
+    max-width: 7680px;
+    /* 4x1920, damit die bei einem gigantisch breiten screen nicht zu wenig enemies kommen*/
+    position: relative;
+    z-index: 1;
+}
+
+* {
+    font-family: "PressStart2P", serif;
+}
+
+body {
+    align-content: center;
+    margin: 0px;
+    overflow: hidden;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        0deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(65, 9, 121, 1) 35%,
+        rgba(0, 0, 0, 1) 100%
+    );
+}
+
+.bg_anim {
+    z-index: -99;
+    position: absolute;
+    top: 2%;
+    /* muss 2% */
+    left: 50%;
+    height: 1px;
+    width: 1px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow:
+        4vw -27vh 3px 1px #fff,
+        36vw -30vh 0px 1px #fff,
+        4vw -31vh 1px 1px #fff,
+        22vw 42vh 3px 2px #fff,
+        29vw 20vh 2px 0px #fff,
+        -18vw 43vh 0px 0px #fff,
+        -3vw -21vh 2px 0px #fff,
+        -50vw -48vh 0px 2px #fff,
+        28vw -8vh 1px 3px #fff,
+        14vw 37vh 1px 1px #fff,
+        49vw 2vh 1px 1px #fff,
+        -35vw 12vh 3px 3px #fff,
+        -30vw 33vh 0px 0px #fff,
+        9vw -27vh 3px 2px #fff,
+        -42vw 21vh 3px 2px #fff,
+        46vw -30vh 3px 0px #fff,
+        46vw -3vh 3px 1px #fff,
+        -25vw 49vh 0px 2px #fff,
+        35vw -26vh 1px 2px #fff,
+        -49vw -10vh 3px 0px #fff,
+        16vw -27vh 1px 1px #fff,
+        -31vw 12vh 1px 0px #fff,
+        39vw 2vh 3px 3px #fff,
+        -16vw -19vh 2px 2px #fff,
+        -46vw -39vh 0px 0px #fff,
+        38vw -40vh 1px 0px #fff,
+        22vw 37vh 0px 0px #fff,
+        -13vw -5vh 0px 0px #fff,
+        -5vw 32vh 0px 1px #fff,
+        -27vw 35vh 0px 3px #fff,
+        -33vw 40vh 3px 1px #fff,
+        50vw -17vh 0px 3px #fff,
+        -40vw -23vh 0px 0px #fff,
+        -5vw -48vh 0px 2px #fff,
+        -39vw 31vh 0px 1px #fff,
+        -34vw 38vh 1px 3px #fff,
+        9vw -3vh 1px 3px #fff,
+        -46vw -5vh 2px 3px #fff,
+        -44vw 42vh 2px 0px #fff,
+        22vw -41vh 0px 3px #fff,
+        -35vw 46vh 2px 1px #fff,
+        23vw -17vh 0px 3px #fff,
+        -11vw -20vh 0px 3px #fff,
+        14vw -43vh 0px 3px #fff,
+        -28vw 16vh 3px 1px #fff,
+        28vw 26vh 0px 3px #fff,
+        -43vw 0vh 0px 3px #fff,
+        -42vw -7vh 1px 3px #fff,
+        -29vw -16vh 2px 3px #fff,
+        43vw 3vh 3px 0px #fff,
+        -16vw -48vh 2px 1px #fff,
+        15vw -22vh 2px 3px #fff,
+        -16vw -35vh 0px 0px #fff,
+        37vw -8vh 2px 2px #fff,
+        48vw -48vh 1px 2px #fff,
+        -12vw -10vh 3px 2px #fff,
+        39vw 3vh 3px 0px #fff,
+        17vw 27vh 2px 3px #fff,
+        -6vw 32vh 0px 2px #fff,
+        28vw -31vh 2px 1px #fff,
+        -12vw 39vh 1px 2px #fff,
+        -15vw 8vh 2px 2px #fff,
+        -33vw -13vh 0px 1px #fff,
+        -46vw -5vh 0px 2px #fff,
+        41vw 19vh 3px 0px #fff,
+        23vw -27vh 2px 0px #fff,
+        31vw -6vh 1px 2px #fff,
+        4vw -24vh 0px 0px #fff,
+        47vw 4vh 2px 3px #fff,
+        4vw -15vh 2px 0px #fff,
+        29vw 7vh 3px 3px #fff,
+        20vw 26vh 3px 2px #fff,
+        30vw -19vh 2px 2px #fff,
+        -39vw -33vh 1px 3px #fff,
+        -41vw 28vh 3px 1px #fff,
+        13vw 37vh 3px 1px #fff,
+        34vw -7vh 3px 3px #fff,
+        -22vw -9vh 0px 1px #fff,
+        19vw 50vh 2px 1px #fff,
+        -49vw 27vh 1px 0px #fff,
+        35vw -45vh 1px 3px #fff,
+        1vw 11vh 2px 0px #fff,
+        -15vw 2vh 3px 0px #fff,
+        -20vw -42vh 1px 3px #fff,
+        -5vw -4vh 0px 3px #fff,
+        -46vw -37vh 1px 0px #fff,
+        -10vw -41vh 0px 3px #fff,
+        -39vw -35vh 1px 1px #fff,
+        4vw 7vh 0px 3px #fff,
+        -20vw 13vh 2px 2px #fff,
+        -11vw 14vh 1px 3px #fff,
+        37vw -6vh 2px 0px #fff,
+        29vw 26vh 3px 1px #fff,
+        25vw 43vh 3px 3px #fff,
+        -31vw 7vh 0px 3px #fff,
+        -42vw 31vh 0px 2px #fff,
+        14vw 46vh 3px 3px #fff,
+        40vw 1vh 2px 1px #fff,
+        12vw 37vh 3px 2px #fff,
+        1vw 19vh 3px 1px #fff;
+    animation: move 20s linear infinite;
+}
+
+.bg_anim2 {
+    z-index: -99;
+    position: absolute;
+    top: -51%;
+    /* muss 51% */
+    left: 50%;
+    height: 1px;
+    width: 1px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow:
+        4vw -27vh 3px 1px #fff,
+        36vw -30vh 0px 1px #fff,
+        4vw -31vh 1px 1px #fff,
+        22vw 42vh 3px 2px #fff,
+        29vw 20vh 2px 0px #fff,
+        -18vw 43vh 0px 0px #fff,
+        -3vw -21vh 2px 0px #fff,
+        -50vw -48vh 0px 2px #fff,
+        28vw -8vh 1px 3px #fff,
+        14vw 37vh 1px 1px #fff,
+        49vw 2vh 1px 1px #fff,
+        -35vw 12vh 3px 3px #fff,
+        -30vw 33vh 0px 0px #fff,
+        9vw -27vh 3px 2px #fff,
+        -42vw 21vh 3px 2px #fff,
+        46vw -30vh 3px 0px #fff,
+        46vw -3vh 3px 1px #fff,
+        -25vw 49vh 0px 2px #fff,
+        35vw -26vh 1px 2px #fff,
+        -49vw -10vh 3px 0px #fff,
+        16vw -27vh 1px 1px #fff,
+        -31vw 12vh 1px 0px #fff,
+        39vw 2vh 3px 3px #fff,
+        -16vw -19vh 2px 2px #fff,
+        -46vw -39vh 0px 0px #fff,
+        38vw -40vh 1px 0px #fff,
+        22vw 37vh 0px 0px #fff,
+        -13vw -5vh 0px 0px #fff,
+        -5vw 32vh 0px 1px #fff,
+        -27vw 35vh 0px 3px #fff,
+        -33vw 40vh 3px 1px #fff,
+        50vw -17vh 0px 3px #fff,
+        -40vw -23vh 0px 0px #fff,
+        -5vw -48vh 0px 2px #fff,
+        -39vw 31vh 0px 1px #fff,
+        -34vw 38vh 1px 3px #fff,
+        9vw -3vh 1px 3px #fff,
+        -46vw -5vh 2px 3px #fff,
+        -44vw 42vh 2px 0px #fff,
+        22vw -41vh 0px 3px #fff,
+        -35vw 46vh 2px 1px #fff,
+        23vw -17vh 0px 3px #fff,
+        -11vw -20vh 0px 3px #fff,
+        14vw -43vh 0px 3px #fff,
+        -28vw 16vh 3px 1px #fff,
+        28vw 26vh 0px 3px #fff,
+        -43vw 0vh 0px 3px #fff,
+        -42vw -7vh 1px 3px #fff,
+        -29vw -16vh 2px 3px #fff,
+        43vw 3vh 3px 0px #fff,
+        -16vw -48vh 2px 1px #fff,
+        15vw -22vh 2px 3px #fff,
+        -16vw -35vh 0px 0px #fff,
+        37vw -8vh 2px 2px #fff,
+        48vw -48vh 1px 2px #fff,
+        -12vw -10vh 3px 2px #fff,
+        39vw 3vh 3px 0px #fff,
+        17vw 27vh 2px 3px #fff,
+        -6vw 32vh 0px 2px #fff,
+        28vw -31vh 2px 1px #fff,
+        -12vw 39vh 1px 2px #fff,
+        -15vw 8vh 2px 2px #fff,
+        -33vw -13vh 0px 1px #fff,
+        -46vw -5vh 0px 2px #fff,
+        41vw 19vh 3px 0px #fff,
+        23vw -27vh 2px 0px #fff,
+        31vw -6vh 1px 2px #fff,
+        4vw -24vh 0px 0px #fff,
+        47vw 4vh 2px 3px #fff,
+        4vw -15vh 2px 0px #fff,
+        29vw 7vh 3px 3px #fff,
+        20vw 26vh 3px 2px #fff,
+        30vw -19vh 2px 2px #fff,
+        -39vw -33vh 1px 3px #fff,
+        -41vw 28vh 3px 1px #fff,
+        13vw 37vh 3px 1px #fff,
+        34vw -7vh 3px 3px #fff,
+        -22vw -9vh 0px 1px #fff,
+        19vw 50vh 2px 1px #fff,
+        -49vw 27vh 1px 0px #fff,
+        35vw -45vh 1px 3px #fff,
+        1vw 11vh 2px 0px #fff,
+        -15vw 2vh 3px 0px #fff,
+        -20vw -42vh 1px 3px #fff,
+        -5vw -4vh 0px 3px #fff,
+        -46vw -37vh 1px 0px #fff,
+        -10vw -41vh 0px 3px #fff,
+        -39vw -35vh 1px 1px #fff,
+        4vw 7vh 0px 3px #fff,
+        -20vw 13vh 2px 2px #fff,
+        -11vw 14vh 1px 3px #fff,
+        37vw -6vh 2px 0px #fff,
+        29vw 26vh 3px 1px #fff,
+        25vw 43vh 3px 3px #fff,
+        -31vw 7vh 0px 3px #fff,
+        -42vw 31vh 0px 2px #fff,
+        14vw 46vh 3px 3px #fff,
+        40vw 1vh 2px 1px #fff,
+        12vw 37vh 3px 2px #fff,
+        1vw 19vh 3px 1px #fff;
+    animation: move2 20s linear infinite;
+}
+
+#game-over {
+    color: white;
+    position: fixed;
+    left: calc(50vw - 250px);
+    top: calc(50vh - 350px);
+    text-align: center;
+    width: 500px;
+    height: 200px;
+    font-size: 100px;
+    font-family: "PressStart2P", serif;
+    opacity: 0%;
+    transition: all 800ms;
+}
+
+#alert-screen {
+    color: rgb(228, 15, 15);
+    position: fixed;
+    z-index: 1;
+    left: 28vw;
+    top: 40vh;
+    text-align: center;
+    width: 500px;
+    height: 200px;
+    font-size: 200px;
+    font-family: "PressStart2P", serif;
+    opacity: 0;
+    animation: all 800ms;
+    visibility: hidden;
+}
+
+#alert-screen.show {
+    visibility: visible;
+    opacity: 100%;
+    animation-name: animation_blink;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
+}
+
+@keyframes animation_blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.darkener {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #000000aa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#start-screen > h1 {
+    font-size: 100px;
+    width: 100vw;
+    top: calc(50vh - 200px);
+    text-align: center;
+    display: block;
+    position: fixed;
+    font-size: 35px;
+    color: #ffffff;
+}
+
+#playername-field {
+    height: 50px;
+    width: 300px;
+    font-size: 45px;
+    color: white;
+    background-color: #555;
+    border: none;
+    text-align: center;
+    position: fixed;
+    top: calc(50vh - 100px);
+    left: calc(50vw - 150px);
+    padding-top: 3px;
+}
+
+#playername-field:focus {
+    outline: none;
+    border-color: #dddddd;
+    border-style: solid;
+    border-width: 3px;
+}
+
+#start-screen > .play-button {
+    position: fixed;
+    top: 50vh;
+    left: calc(50vw - 90px);
+}
+
+.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#game-over-screen {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 400ms;
+}
+
+#game-over-screen.show {
+    visibility: visible;
+    opacity: 100%;
+}
+
+#game-over-screen.show > #game-over {
+    transition-delay: 900ms;
+    opacity: 100%;
+}
+
+#game-over-screen.show > .play-button {
+    transition-delay: 1300ms;
+    opacity: 100%;
+}
+
+#game-over-screen > .play-button {
+    opacity: 0;
+    left: calc(50vw - 90px);
+    top: calc(50vh + 300px);
+    transition: opacity 300ms;
+}
+
+.play-button {
+    position: fixed;
+    background-color: #cc0000ff;
+    border: none;
+    color: white;
+    font-family: "PressStart2P", serif;
+    font-size: 3vh;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 16px;
+    padding: 32px 16px;
+    cursor: pointer;
+    width: 180px;
+}
+
+.play-button:hover {
+    box-shadow:
+        0 12px 16px 0 rgba(239, 239, 240, 0.24),
+        0 17px 50px 0 rgba(239, 239, 240, 0.19);
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(500px);
+    }
+
+    100% {
+        transform: translateY(1500px);
+    }
+}
+
+@keyframes move2 {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(1000px);
+    }
+}
+
+#score {
+    font-size: 30px;
+    width: 290px;
+    overflow: auto;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.highscore-tag {
+    text-align: left;
+    grid-row: 2;
+    grid-column: 1;
+    font-size: 15px;
+    transition: all 500ms;
+}
+
+#highscore {
+    text-align: right;
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 15px;
+    transition: all 500ms;
+}
+
+.score-tag {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+    width: 180px;
+}
+
+#score-board {
+    z-index: 3;
+    color: #fff;
+    margin: 10px;
+    margin-right: 0;
+    font-family: "PressStart2P", serif;
+    width: auto;
+    height: fit-content;
+    opacity: 60%;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    text-align: right;
+    display: grid;
+    transition: all 500ms;
+}
+
+#score-board.end {
+    transition-delay: 400ms;
+    top: calc(50vh - 120px);
+    right: calc(50vw - 295px);
+    text-align: right;
+    width: 590px;
+    opacity: 100%;
+}
+
+#score-board.end > .highscore-tag {
+    transition-delay: 400ms;
+    font-size: 30px;
+}
+
+#score-board.end > #highscore {
+    transition-delay: 400ms;
+    font-size: 30px;
+}
+
+.global-scoreboard {
+    position: fixed;
+    top: 50vh;
+    left: calc(50vw - 250px);
+    width: 500px;
+    color: white;
+    font-family: "PressStart2P", serif;
+    font-size: larger;
+}
+
+.global-scoreboard > table {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.global-scoreboard > table > tr {
+    margin-top: 4px;
+    width: 500px;
+}
+
+.curplayer {
+    color: #d39696;
+}
+
+th.gs-nameheader {
+    text-align: left;
+}
+
+th.gs-scoreheader,
+td.gs-scoretag {
+    text-align: end;
+}
+
+#bounties {
+    z-index: 10;
+    position: fixed;
+    top: 70px;
+    right: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#bounties > div {
+    color: #00e913;
+    font-size: 20px;
+    font-family: "PressStart2P";
+    text-align: right;
+    animation: bounties 3s;
+    opacity: 0;
+}
+
+@keyframes bounties {
+    0% {
+        opacity: 90%;
+        visibility: visible;
+    }
+
+    90% {
+        opacity: 90%;
+        visibility: visible;
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0%;
+        visibility: visible;
+        transform: translateY(10px);
+    }
+}
+
+@font-face {
+    font-family: "PressStart2P";
+    src: url("fonts/PressStart2P-Regular.ttf");
+}
+
+#hidden_canvas {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    visibility: hidden;
+    position: fixed;
+}
